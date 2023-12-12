@@ -1,7 +1,7 @@
 import { LightningElement, wire } from 'lwc';
 import fetchData from '@salesforce/apex/ApiCallout.fetchdata';
 
-export default class ApiCalloutComponent extends LightningElement {
+export default class accountApiData extends LightningElement {
     apiData;
     error;
     isDataVisible = false;
