@@ -2,7 +2,7 @@ import { LightningElement, wire } from 'lwc';
 import fetchData from '@salesforce/apex/ApiCallout.fetchdata';
 
 export default class accountApiData extends LightningElement {
-    apiData;
+    aFacts;
     error;
     isDataVisible = false;
     apiUrl = ''; 
@@ -10,10 +10,10 @@ export default class accountApiData extends LightningElement {
     @wire(fetchData, { apiEndpoint: '$apiUrl' })
     wiredApiData({ error, data }) {
         if (data) {
-            this.apiData = JSON.stringify(JSON.parse(data), null, 2);
+            this.aFacts = JSON.parse(data);
             this.error = undefined;
         } else if (error) {
-            this.apiData = undefined;
+            this.aFacts = undefined;
             this.error = error.body.message;
         }
     }
