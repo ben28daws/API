@@ -2,17 +2,43 @@
     <lightning-card title="API Data" icon-name="custom:custom14">
         <div class="slds-m-around_medium">
             <lightning-input label="Enter API URL" type="url" onchange={handleApiUrlChange}></lightning-input>
-        <br>
+            <br>
             <lightning-button label="Show Data" onclick={showData} variant="success" if:false={isDataVisible}></lightning-button>
             <lightning-button label="Hide Data" onclick={hideData} variant="destructive" if:true={isDataVisible}></lightning-button>
 
             <template if:true={isDataVisible}>
-                <pre>{apiData}</pre>
+                <div class="slds-scrollable" style="max-height: 300px;">
+                    <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>User</th>
+                                <th>Text</th>
+                                <th>Source</th>
+                                <th>Type</th>
+                                <th>Created At</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={aFacts} for:item="fact">
+                                <tr key={fact._id}>
+                                    <td>{fact._id}</td>
+                                    <td>{fact.user}</td>
+                                    <td>{fact.text}</td>
+                                    <td>{fact.source}</td>
+                                    <td>{fact.type}</td>
+                                    <td>{fact.createdAt}</td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
                 <template if:true={error}>
                     <p>Error: {error}</p>
                 </template>
             </template>
-            
+
+           
         </div>
     </lightning-card>
 </template>
